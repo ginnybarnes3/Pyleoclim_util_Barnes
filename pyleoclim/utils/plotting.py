@@ -16,6 +16,7 @@ from matplotlib.patches import Rectangle
 from matplotlib.collections import PatchCollection
 from matplotlib.colors import ListedColormap
 import seaborn as sns
+import scienceplots
 
 
 def scatter_xy(x,y,c=None, figsize=None, xlabel=None, ylabel=None, title=None, 
@@ -570,6 +571,149 @@ def set_style(style='journal', font_scale=1.0, dpi=300):
             'xtick.minor.width': 0,
             'ytick.minor.width': 0,
         })
+    elif 'science' in style:
+        style_dict.update({
+
+            # Set default figure size
+            'figure.figsize' : [3.5, 2.625],
+
+            # Set x axis
+            'xtick.direction' : 'in',
+            'xtick.major.size' : 3,
+            'xtick.major.width' : 0.5,
+            'xtick.minor.size' : 1.5,
+            'xtick.minor.width' : 0.5,
+            'xtick.minor.visible' : True,
+            'xtick.top' : True,
+
+            # Set y axis
+            'ytick.direction' : 'in',
+            'ytick.major.size' : 3,
+            'ytick.major.width' : 0.5,
+            'ytick.minor.size' : 1.5,
+            'ytick.minor.width' : 0.5,
+            'ytick.minor.visible' : True,
+            'ytick.right' : True,
+
+            # Set line widths
+            'axes.linewidth' : 0.5,
+            'grid.linewidth' : 0.5,
+            'lines.linewidth' : 1.0,
+
+            # Remove legend frame
+            'legend.frameon' : False,
+
+            # Always save as 'tight'
+            'savefig.bbox' : 'tight',
+            'savefig.pad_inches' : 0.05,
+
+            # Use serif fonts
+            'font.serif' : 'cmr10, Computer Modern Serif, DejaVu Serif',
+            'font.family' : 'serif',
+            'axes.formatter.use_mathtext' : True,
+            'mathtext.fontset' : 'cm',
+            'text.usetex' : False,
+        
+        })
+    elif 'ieee' in style:
+        
+        style_dict.update({
+            # Matplotlib style for IEEE plots
+            # This style should work for most two-column journals
+
+            # Set color cycle
+            # Set line style as well for black and white graphs
+            #'axes.prop_cycle' : (cycler('color', ['k', 'r', 'b', 'g']) + cycler('ls', ['-', '--', ':', '-.'])),
+
+            # Set default figure size
+            'figure.figsize' : [3.3, 2.5],
+            'figure.dpi' : 600,
+
+            # Font sizes
+            'font.size' : 8,
+            # Stix is designed to look similar to Times.
+            'font.family' : 'serif',
+            'font.serif' : 'STIXGeneral',
+            'mathtext.fontset' : 'stix',
+            'text.usetex' : False
+        
+        
+        })
+    
+    elif 'nature' in style:
+        style_dict.update({
+            # Matplotlib style for Nature journal figures.
+            # In general, they advocate for all fonts to be panel labels to be sans serif
+            # and all font sizes in a figure to be 7 pt and panel labels to be 8 pt bold.
+
+            # Figure size
+            'figure.figsize' : [3.3, 2.5],  # max width is 3.5 for single column,
+
+            # Font sizes
+            'axes.labelsize': 7,
+            'xtick.labelsize': 7,
+            'ytick.labelsize': 7,
+            'legend.fontsize': 7,
+            'font.size': 7,
+
+            # Font Family
+            'font.family': 'sans-serif',
+            'font.sans-serif': 'DejaVu Sans, Arial, Helvetica, Lucida Grande, Verdana, Geneva, Lucid, Avant Garde, sans-serif',
+            'mathtext.fontset' : 'dejavusans',
+
+            # Set line widths
+            'axes.linewidth' : 0.5,
+            'grid.linewidth' : 0.5,
+            'lines.linewidth' : 1.,
+            'lines.markersize': 3,
+            'text.usetex' : False,
+
+            # Always save as 'tight'
+            # savefig.bbox : tight
+            # savefig.pad_inches : 0.01  # Use virtually all space when we specify figure dimensions
+            
+        })
+        
+    elif 'notebook' in style:
+        style_dict.update({
+            # Set default figure size
+            'figure.figsize' : [8, 6],
+
+            # Set x axis
+            'xtick.major.size' : 6,
+            'xtick.major.width' : 1,
+            'xtick.minor.size' : 3,
+            'xtick.minor.width' : 1,
+
+            # Set y axis
+            'ytick.major.size' : 6,
+            'ytick.major.width' : 1,
+            'ytick.minor.size' : 3,
+            'ytick.minor.width' : 1,
+
+            # Fontsizes
+            'xtick.labelsize' : 16,
+            'ytick.labelsize' : 16,
+            'legend.fontsize' : 16,
+            'legend.title_fontsize' : 16,
+            'axes.titlesize' : 16,
+            'axes.labelsize' : 16,
+
+            # Set line widths
+            'axes.linewidth' : 1,
+            'grid.linewidth' : 1,
+            'lines.linewidth' : 2.0,
+
+            # Use sans-serif fonts
+            'font.family' : 'sans-serif',
+            'mathtext.fontset' : 'dejavusans',
+
+            # Use LaTeX for math formatting
+            'text.usetex' : False
+           
+        
+        })
+        
     else:
         raise ValueError(f'Style [{style}] not availabel!')
 
@@ -599,6 +743,8 @@ def set_style(style='journal', font_scale=1.0, dpi=300):
 
     figure_dict = {
         'savefig.dpi': dpi,
+   
+        
     }
 
     # modify font size based on font scale
@@ -606,6 +752,8 @@ def set_style(style='journal', font_scale=1.0, dpi=300):
 
     for d in [style_dict, font_dict, figure_dict]:
         mpl.rcParams.update(d)
+        
+    
 
 
 
