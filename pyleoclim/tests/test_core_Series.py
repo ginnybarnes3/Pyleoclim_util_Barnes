@@ -1038,8 +1038,20 @@ class TestUISeriesPlot:
     Series.plot outputs a matplotlib figure and axis object, so we will compare the time axis
     of the axis object to the time array.'''
 
-    def test_plot(self):
+    def test_plot0(self):
 
+        ts = gen_normal()
+
+        fig, ax = ts.plot()
+
+        line = ax.lines[0]
+
+        x_plot = line.get_xdata()
+        y_plot = line.get_ydata()
+        pyleo.closefig(fig)
+        
+    def test_plot1(self):
+        # loop over seperate styles for generic plot
         ts = gen_normal()
 
         fig, ax = ts.plot()
