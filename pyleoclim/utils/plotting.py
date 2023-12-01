@@ -470,18 +470,24 @@ def set_style(style='journal', font_scale=1.0, dpi=300):
     ''' Modify the visualization style
     
     This function is inspired by `Seaborn <https://github.com/mwaskom/seaborn>`_.
+    For scientific, ieee, nature and notebook styles, the function is inspired by <https://pypi.org/project/SciencePlots/>
    
     
     Parameters
     ----------
     
-    style : {journal,web,matplotlib,_spines, _nospines,_grid,_nogrid}
+    style : {journal,web,science, ieee, nature, notebook, matplotlib,_spines, _nospines,_grid,_nogrid}
 
         set the styles for the figure:
 
             - journal (default): fonts appropriate for paper
             - web: web-like font (e.g. ggplot)
             - matplotlib: the original matplotlib style
+            - science: follows scientific publication guidelines
+            - ieee: follows ieee publication guidelines
+            - nature: follows nature publication guidelines
+            - notebook: follows notebook publication guidelines
+
 
             In addition, the following options are available:
             
